@@ -4,6 +4,7 @@ from pygame.math import Vector2
 # Adds title to the window
 pygame.display.set_caption("PySnake")
 
+
 class SNAKE:
     def __init__(self):
         self.body = [Vector2(7, 10), Vector2(6, 10), Vector2(5, 10)]
@@ -15,7 +16,8 @@ class SNAKE:
             # create a rect
             x_pos = int(block.x * cell_size)
             y_pos = int(block.y * cell_size)
-            block_rect = pygame.Rect(x_pos, y_pos, cell_size, cell_size)  # x, y, w, h
+            block_rect = pygame.Rect(x_pos, y_pos, cell_size,
+                                     cell_size)  # x, y, w, h
             # draw the rectangle
             pygame.draw.rect(screen, (61, 93, 224), block_rect)
 
@@ -57,7 +59,8 @@ class FRUIT:
         # create a rectangle
         x_pos = int(self.pos.x * cell_size)
         y_pos = int(self.pos.y * cell_size)
-        fruit_rect = pygame.Rect(x_pos, y_pos, cell_size, cell_size)  # x, y, w, h
+        fruit_rect = pygame.Rect(x_pos, y_pos, cell_size,
+                                 cell_size)  # x, y, w, h
         # draw the rectangle
         # surface, color, rectangle
         pygame.draw.rect(screen, (252, 3, 61), fruit_rect)
@@ -105,7 +108,9 @@ class MAIN:
     # game over
     def check_fail(self):
         # moves off screen, game over
-        if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:
+        if not 0 <= self.snake.body[
+                0].x < cell_number or not 0 <= self.snake.body[
+                    0].y < cell_number:
             self.game_over()
         # runs into self, game over
         for block in self.snake.body[1:]:
@@ -121,17 +126,21 @@ class MAIN:
 
     # Add score to the screen
     def draw_score(self):
-        self.font_color = (0,0,0)
-        self.game_font = pygame.font.Font("font/Computerfont.ttf",25)
-        self.score_text = self.game_font.render("Score: " + str(self.score) + 
-            "     High Score: " + str(self.high_score), True, self.font_color)
-        self.text_rect = self.score_text.get_rect(center=(screen.get_width()/2, 15))
+        self.font_color = (0, 0, 0)
+        self.game_font = pygame.font.Font("font/Computerfont.ttf", 25)
+        self.score_text = self.game_font.render(
+            "Score: " + str(self.score) + "     High Score: " +
+            str(self.high_score), True, self.font_color)
+        self.text_rect = self.score_text.get_rect(center=(screen.get_width() /
+                                                          2, 15))
         screen.blit(self.score_text, self.text_rect)
+
 
 pygame.init()
 cell_size = 20
 cell_number = 20
-screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size))  # width, height
+screen = pygame.display.set_mode(
+    (cell_number * cell_size, cell_number * cell_size))  # width, height
 clock = pygame.time.Clock()
 
 main_game = MAIN()
